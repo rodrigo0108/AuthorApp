@@ -1,0 +1,4 @@
+include ':app',':appdata'
+include ':home',':homedata'
+include ':model'
+rootProject.name = "AuthorApp"
