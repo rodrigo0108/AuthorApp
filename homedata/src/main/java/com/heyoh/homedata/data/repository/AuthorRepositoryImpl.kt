@@ -9,7 +9,7 @@ import com.heyoh.model.result.Result
 class AuthorRepositoryImpl(
     private val authorRemoteDataStore: AuthorRemoteDataStore
 ) : AuthorRepository {
-    override suspend fun getAuthors(): Result<Author, Failure> {
+    override suspend fun getAuthors(): Result<List<Author>, Failure> {
         return authorRemoteDataStore.getAuthors()
     }
 }

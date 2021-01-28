@@ -5,5 +5,5 @@ import com.heyoh.model.result.Failure
 import com.heyoh.model.result.Result
 
 interface AuthorRepository {
-    suspend fun getAuthors(): Result<Author,Failure>
+    suspend fun getAuthors(): Result<List<Author>,Failure>
 }

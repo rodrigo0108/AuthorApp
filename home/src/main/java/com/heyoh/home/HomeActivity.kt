@@ -26,8 +26,8 @@ class HomeActivity : AppCompatActivity() {
     private fun homeModelResult(homeModel: HomeModel) {
         when (homeModel) {
             is HomeModel.Success -> {
-                val result = homeModel.value as Author
-                showToast(result.firstName)
+                val result = homeModel.value
+                showToast(result[1].firstName)
             }
             is HomeModel.Error -> {
                 showToast("Error")
