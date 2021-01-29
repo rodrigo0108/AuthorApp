@@ -20,27 +20,45 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initBinding()
+        initKoinModule()
+        initObservable()
+        initAdapter()
+        viewModel.getAuthors()
+    }
+
+    private fun initBinding() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+    }
+
+    private fun initKoinModule() {
         loadKoinModules(homeModule)
+    }
+
+    private fun initObservable() {
         viewModel.model.observe(this, Observer(::homeModelResult))
-        viewModel.getAuthors()
+    }
+
+    private fun initAdapter() {
         adapter = AuthorAdapter()
         binding.authorRecyclerView.adapter = adapter
     }
 
+
+
     private fun homeModelResult(homeModel: HomeModel) {
         when (homeModel) {
             is HomeModel.Success -> {
-                adapter.fillList(homeModel.value)
+                adapter.list = homeModel.value
             }
             is HomeModel.Error -> {
-                showToast("Error")
+                showToast()
             }
         }
     }
 
-    private fun showToast(content: String) {
-        Toast.makeText(this, content, Toast.LENGTH_SHORT).show()
+    private fun showToast() {
+        Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
     }
 }
