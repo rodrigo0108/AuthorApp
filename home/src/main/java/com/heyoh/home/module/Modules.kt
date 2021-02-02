@@ -1,6 +1,7 @@
 package com.heyoh.home.module
 
 import com.heyoh.home.HomeViewModel
+import com.heyoh.home.list.AuthorViewModel
 import com.heyoh.homedata.data.datastore.AuthorRemoteDataStore
 import com.heyoh.homedata.data.repository.AuthorRepositoryImpl
 import com.heyoh.homedata.data.source.remote.AuthorRemoteDataStoreImpl
@@ -16,5 +17,6 @@ val homeModule = module {
     //Data
     factory { GetAuthorsUseCase(get()) }
     //View
-    viewModel { HomeViewModel(get()) }
+    viewModel { HomeViewModel() }
+    viewModel { AuthorViewModel(get()) }
 }
